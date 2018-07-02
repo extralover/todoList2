@@ -1,0 +1,195 @@
+@import "./icon/fontawesome.scss";
+@import "./icon/fa-solid.scss";
+@import "./icon/fa-regular.scss";
+*{
+  box-sizing: border-box;
+}
+%clear {
+  content:''; display: block; clear: both;
+}
+
+body{
+  font-size: 15px;
+  font-family: sans-serif;
+  color: #444;
+  margin: 0;
+}
+button {
+  background: none;
+  border: none;
+}
+header {
+  position: fixed; top: 0; left: 0; width: 100%; height: 54px; z-index: 10;
+  padding: 5px;
+  background-color: #fc6c48;
+  &:after {
+    @extend %clear;
+  }
+  .f_left {
+    float: left;
+  }
+  .f_right {
+    float: right;
+  }
+  .gnb {
+    display: inline-block;
+    .btn_menu {
+      width: 44px; height: 44px;
+      color: #fff; font-size: 1.5rem;
+      @extend .fas;
+      &:before {
+        content: fa-content($fa-var-bars);
+      }
+    }
+  }
+
+  h1{
+    color: #fff; font-size: 1.2rem;
+    text-align: center;
+    display: inline-block;
+    margin: 0;
+  }
+
+  .btn_search {
+    width: 44px; height: 44px;
+    color: #fff; font-size: 1.5rem;
+    @extend .fas;
+    &:before {
+      content: fa-content($fa-var-search);
+    }
+  }
+  .btn_etc {
+    width: 44px; height: 44px;
+    color: #fff; font-size: 1.5rem;
+    @extend .fas;
+    &:before {
+      content: fa-content($fa-var-ellipsis-v);
+    }
+  }
+}
+
+footer {
+  position: fixed; bottom: 0; left: 0; width: 100%; z-index: 20;
+  padding: 20px;
+  &:after {
+    @extend %clear;
+  }
+  .btn_add {
+    float: right;
+    background-color: orange;
+    box-shadow: 0 3px 3px #ccc;
+    color: #fff;
+    border-radius: 100px;
+    min-width: 44px; height: 44px;
+    transition: all ease-in 0.25s;
+    font-size: 1.5em;
+    padding: 0.3em 0.3em;
+    @extend .fas;
+    &:before {
+      content: fa-content($fa-var-plus);
+    }
+  }
+  .control-buttons{
+    float: left;
+    text-align: center;
+    padding-top: 10px;
+  }
+  .btn-secondary{
+    display: inline-block;
+    position: relative;
+    border: 0;
+    padding: 5px;
+    color: #444; font-size: 1em;
+    margin: 0 10px;
+    &:after{
+      position: absolute;
+      content: '';
+      width: 0;
+      height: 3px;
+      background-color: #f4586e;
+      bottom: 0px;
+      left: 0;
+      transition: all ease-in 0.25s;
+    }
+    &:hover:after{
+      width: 100%;
+    }
+  }
+}
+.todo-wrapper {
+  min-height: 100vh;
+  margin: 0 auto;
+  border: none;
+  border-radius: 0;
+  padding: 60px 10px 10px 10px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.05);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.05);
+  background-color: #f4f7fc;
+}
+
+.input_wrap {
+  & .dimmed {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+  }
+}
+
+.input_todo {
+  line-height: 2em;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0.2em 1em;
+  font-size: 1em;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  width: 80%;
+  transition: all ease-in 0.25s;
+  &:focus{
+    outline: none;
+    border: 1px solid #a3b1ff;
+  }
+  &::placeholder{
+    color: rgba(0,0,0,0.3);
+    font-style: italic;
+  }
+}
+
+.btn_write {
+  background: #ccc;
+  color: #fefefe;
+  border-radius: 3px;
+  width: 18%; height: 40px;
+  pointer-events: none;
+  transition: all ease-in 0.25s;
+  font-size: 1.5em;
+  padding: 0.3em 0.3em;
+  vertical-align: middle;
+  @extend .fas;
+  &:before {
+    content: fa-content($fa-var-paper-plane);
+  }
+  &.active{
+    background: #6664ff;
+    pointer-events: visible;
+    transform: scale(0.95);
+  }
+  &.active:hover{
+    background: #4442f6;
+    border-color: #4442f6;
+  }
+}
+
+header.input_header {
+  background-color: #fff;
+  .btn_back {
+    width: 44px; height: 44px;
+    color: #000; font-size: 1.5rem;
+    @extend .fas;
+    &:before {
+      content: fa-content($fa-var-arrow-left);
+    }
+  }
+}
+footer.input_header {
+  padding: 10px;
+}

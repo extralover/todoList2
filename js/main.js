@@ -9,6 +9,7 @@ new Vue({
       ],
       new_todo: '',
       showComplete: false,
+      inputMode: false
     };
   },
   mounted() {
@@ -89,6 +90,13 @@ new Vue({
     },
     clearAll() {
       this.todoList = [];
+    },
+    showInput() {
+      this.inputMode = true;
+      //document.getElementById("inputTodo").focus();
+    },
+    hideInput() {
+      this.inputMode = false;
     }
   },
 });

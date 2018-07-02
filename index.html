@@ -5,20 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <link rel="icon" href="images/favicon.png" sizes="32x32">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,100,700,100italic,300italic,400italic">
+  <link rel="stylesheet" type="text/css" href="css/common.min.css">
   <title>META's Todo list</title>
 </head>
 
 <body>
   <div id="app">
-    <h1>To-Do list manager</h1>
-    <section class="todo-wrapper">
-      <h2 class="todo-title">{{ today.date }} {{ today.day }}</h2>
-      <form @keydown.enter.prevent="">
-        <input type="text" class="input-todo" v-bind:class="{ active: new_todo }" placeholder="Add todo list" v-model="new_todo" v-on:keyup.enter="addItem">
-        <div class="btn btn-add" v-bind:class="{ active: new_todo }"  @click="addItem">+</div>
-      </form>
+    <header v-if="!inputMode">
+      <div class="f_left">
+        <nav class="gnb">
+          <button type="button" class="btn_menu"></button>
+        </nav>
+        <h1>관리함</h1>
+      </div>
+      <div class="f_right">
+        <button type="button" class="btn_search"></button>
+        <button type="button" class="btn_etc"></button>
+      </div>
+    </header>
 
+    <section class="todo-wrapper">
       <div v-if="pending.length > 0">
         <p class="status busy">You have {{ pending.length }} pending item<span v-if="todoList.length>1">s</span></p>
         <transition-group name="todo-item" tag="ul" class="todo-list">
@@ -46,15 +52,35 @@
           </li>
         </transition>
       </div>
+    </section>
+
+    <footer v-if="!inputMode">
       <div class="control-buttons">
-        <div class="btn btn-secondary" v-if="completed.length > 0" @click="toggleShowComplete"><span v-if="!showComplete">Show</span><span v-else>Hide</span> Complete</div>
-        <div class="btn btn-secondary" v-if="todoList.length > 0" @click="clearAll">Clear All</div>
+        <button type="button" class="btn btn-secondary" v-if="completed.length > 0" @click="toggleShowComplete"><span v-if="!showComplete">Show</span><span v-else>Hide</span> Complete</button>
+        <button type="button" class="btn btn-secondary" v-if="todoList.length > 0" @click="clearAll">Clear All</button>
+      </div>
+      <button type="button" class="btn_add" @click="showInput"></button>
+    </footer>
+
+    <!-- inputMode // -->
+    <header class="input_header" v-if="inputMode">
+      <div class="f_left">
+        <button type="button" class="btn_back" @click="hideInput"></button>
+      </div>
+    </header>
+    <section class="todo-wrapper" v-if="inputMode">
+      <div class="input_wrap">
+        <div class="dimmed" @click="hideInput"></div>
       </div>
     </section>
+    <footer class="input_footer" v-if="inputMode">
+      <form @keydown.enter.prevent="">
+        <input type="text" class="input_todo" id="inputTodo" v-bind:class="{ active: new_todo }" placeholder="Add todo list" v-model="new_todo" v-on:keyup.enter="addItem">
+        <button type="button" class="btn_write" v-bind:class="{ active: new_todo }"  @click="addItem"></button>
+      </form>
+    </footer>
+    <!-- // inputMode -->
   </div>
-  <footer>
-    This app is buiding by jong-keun.
-  </footer>
   <script src="js/vue.min.js"></script>
   <script src="js/main.js"></script>
 </body>
