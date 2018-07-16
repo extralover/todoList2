@@ -200,3 +200,42 @@ ul.todo-list li:hover .delete:after{
   transform: scale(1.1);
   opacity: 0;
 }
+
+.swiper-container {
+  width: 100%;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: left;
+  justify-content: left;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.swiper-wrapper .swiper-slide.s1 {background-color:#e0e8f5; position: relative;}
+.swiper-wrapper .swiper-slide.s2 {background-color:orange; position: relative;}
+.swiper-wrapper .swiper-slide.s2 i {
+  position: absolute; top: 25px; left: 20px;
+  color: #fff; font-size: 30px;
+}
+.swiper-wrapper .swiper-slide.s3 {background-color:green; position: relative;}
+.swiper-wrapper .swiper-slide.s3 i {
+  position: absolute; top: 25px; right: 20px;
+  color: #fff; font-size: 30px;
+}

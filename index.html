@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <link rel="icon" href="images/favicon.png" sizes="32x32">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
   <link rel="stylesheet" type="text/css" href="css/common.min.css">
   <title>META's Todo list</title>
 </head>
@@ -33,6 +34,14 @@
             <label v-bind:for="'item_' + item.id"></label>
             <span class="todo-text">{{ item.title }}</span>
             <span class="delete" @click="deleteItem(item)"></span>
+            <!-- <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide s1 todo-text">{{ item.title }}</div>
+                <div class="swiper-slide s2"><i class="fas fa-calendar delete" @click="deleteItem(item)"></i></div>
+                <div class="swiper-slide s3"><input class="todo-checkbox" v-bind:id="'item_' + item.id" v-model="item.done" type="checkbox">
+                <label v-bind:for="'item_' + item.id"></label></div>
+              </div>
+            </div> -->
           </li>
         </transition>
       </div>
@@ -81,7 +90,33 @@
     </footer>
     <!-- // inputMode -->
   </div>
+
+
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide s1">오늘이 지나가면 내일이 온다</div>
+      <div class="swiper-slide s2"><i class="fas fa-calendar"></i></div>
+      <div class="swiper-slide s3"><i class="fas fa-check"></i></div>
+    </div>
+  </div>
   <script src="js/vue.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/swiper.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var mySwiper = new Swiper('.swiper-container', {
+      loop: true
+    });
+    mySwiper.on('slideChange', function () {
+      //console.log('지워진다');
+      //$('.swiper-wrapper').remove();
+      $('.swiper-wrapper').animate({opacity: 0}, 1500, function() {
+        $('.swiper-wrapper').remove();
+      });
+    });
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>
